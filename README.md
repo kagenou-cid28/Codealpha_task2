@@ -5,7 +5,7 @@
 Pathfinder AI is an AI-powered Career & Placement Intelligence Assistant designed to help students and fresh graduates navigate internships, placements, resume building, interview preparation, LinkedIn optimization, and career planning.
 
 The platform provides an intuitive conversational interface where users can interact with an intelligent AI mentor to receive personalized career guidance and professional development recommendations.
-
+Developed as part of the CodeAlpha Artificial Intelligence Internship – Task 2(FAQ ChatBox).
 ---
 
 ## Features
