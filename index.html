@@ -9,25 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Warm Palette from Reference Image 5 */
-            --primary: #D97706; /* Amber */
-            --secondary: #3E2723; /* Dark Brown */
-            --tertiary: #5D4037; /* Medium Brown */
-            --neutral-bg: #FCF9F2; /* Neutral Cream */
-            --surface: #F3EFE7; /* Light Surface */
-            --border: #E5E1D8; /* Border Color */
+            --primary: #D97706; 
+            --secondary: #3E2723; 
+            --tertiary: #5D4037; 
+            --neutral-bg: #FCF9F2; 
+            --surface: #F3EFE7; 
+            --border: #E5E1D8; 
             --text-main: #1A1A1A;
             --text-dim: #6B7280;
-            
             --font-head: 'Inter', sans-serif;
             --font-body: 'JetBrains Mono', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--neutral-bg);
@@ -38,7 +32,6 @@
             overflow: hidden;
         }
 
-        /* --- SIDEBAR --- */
         aside {
             width: 70px;
             background: var(--surface);
@@ -62,174 +55,95 @@
             transition: 0.3s;
         }
 
-        .side-btn:hover, .side-btn.active {
-            background: var(--primary);
-            color: white;
-        }
+        .side-btn.active { background: var(--primary); color: white; }
 
-        .side-bottom {
-            margin-top: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* --- MAIN AREA --- */
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        main { flex: 1; display: flex; flex-direction: column; }
 
         header {
             height: 65px;
             border-bottom: 1px solid var(--border);
-            padding: 0 40px;
+            padding: 0 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-family: var(--font-head);
             background: var(--neutral-bg);
         }
 
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* SVG Icon Recreated from Reference Image 8 */
-        .logo-svg {
-            width: 32px;
-            height: 32px;
-        }
+        .brand-container { display: flex; align-items: center; gap: 12px; }
+        .logo-svg { width: 32px; height: 32px; }
 
         .header-title {
             font-weight: 800;
             font-size: 18px;
             color: var(--secondary);
-            letter-spacing: -0.5px;
-            text-transform: none; /* Changed to match requested "Pathfinder AI" */
+            font-family: var(--font-head);
         }
 
-        /* --- CHATBOX --- */
         #chat-window {
             flex: 1;
-            padding: 40px 15%;
+            padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            scroll-behavior: smooth;
+            gap: 20px;
         }
 
-        .log-entry {
-            animation: fadeIn 0.4s ease;
-            line-height: 1.8;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .sys-info {
-            color: var(--text-dim);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .user-prompt {
-            color: var(--primary);
-            font-weight: bold;
-            margin-right: 12px;
-        }
-
+        .log-entry { line-height: 1.6; font-size: 14px; }
+        .user-prompt { color: var(--primary); font-weight: bold; }
+        
         .ai-response-box {
             background: white;
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 25px;
-            font-size: 14px;
-            color: var(--text-main);
-            box-shadow: 0 2px 10px rgba(62, 39, 35, 0.03);
+            padding: 20px;
+            margin-top: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             white-space: pre-line;
         }
 
-        /* --- INPUT PANEL --- */
-        footer {
-            padding: 30px 15%;
-            background: var(--neutral-bg);
-            border-top: 1px solid var(--border);
-        }
-
+        footer { padding: 20px; border-top: 1px solid var(--border); }
         .input-bar {
             background: white;
             border: 1px solid var(--border);
-            padding: 12px 25px;
-            border-radius: 14px;
+            padding: 10px 15px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            gap: 10px;
         }
 
-        input {
-            flex: 1;
-            border: none;
-            outline: none;
-            background: transparent;
-            font-family: var(--font-body);
-            font-size: 15px;
-            color: var(--text-main);
-        }
-
-        .execute-btn {
+        input { flex: 1; border: none; outline: none; font-family: var(--font-body); }
+        .exec-btn {
             background: var(--secondary);
             color: white;
             border: none;
-            padding: 10px 24px;
-            border-radius: 8px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
             font-family: var(--font-head);
             font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
         }
 
-        .execute-btn:hover {
-            background: var(--primary);
-        }
+        .loader { font-size: 11px; color: var(--primary); margin-bottom: 5px; display: none; }
 
-        .loader {
-            font-size: 12px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: none;
+        @media (min-width: 768px) {
+            #chat-window, footer { padding-left: 15%; padding-right: 15%; }
         }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <aside>
         <div class="side-btn active"><i class="fas fa-terminal"></i></div>
-        <div class="side-btn"><i class="fas fa-route"></i></div>
-        <div class="side-btn"><i class="fas fa-id-badge"></i></div>
+        <div class="side-btn" onclick="location.reload()"><i class="fas fa-sync"></i></div>
         <div class="side-bottom">
-            <div class="side-btn" onclick="clearAllData()"><i class="fas fa-trash-alt"></i></div>
-            <div class="side-btn"><i class="fas fa-cog"></i></div>
+            <div class="side-btn" onclick="clearData()"><i class="fas fa-trash"></i></div>
         </div>
     </aside>
 
     <main>
         <header>
             <div class="brand-container">
-                <!-- SVG Branding Icon from Reference Image 8 -->
                 <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="100" height="100" rx="20" fill="#F3EFE7"/>
                     <path d="M25 75L45 45L65 60L85 25" stroke="#D97706" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -238,121 +152,76 @@
                 </svg>
                 <div class="header-title">Pathfinder AI</div>
             </div>
-            <div id="session-tag" style="font-size: 11px; color: var(--primary); font-family: var(--font-body);">SESSION: STD-000</div>
+            <div id="tag" style="font-size: 10px; color: var(--primary);">SESSION ACTIVE</div>
         </header>
 
-        <div id="chat-window">
-            <!-- Content loaded via JavaScript -->
-        </div>
+        <div id="chat-window"></div>
 
         <footer>
-            <div id="status-msg" class="loader">KERNEL: ANALYZING_VECTORS...</div>
+            <div id="load" class="loader">ANALYZING DATA...</div>
             <div class="input-bar">
                 <span class="user-prompt">pathfinder ></span>
-                <input type="text" id="cmd-input" placeholder="Enter your career query..." autocomplete="off" onkeypress="if(event.key==='Enter') runSystemQuery()">
-                <button class="execute-btn" onclick="runSystemQuery()">Execute</button>
+                <input type="text" id="user-in" placeholder="Ask your question..." onkeypress="if(event.key==='Enter') runQuery()">
+                <button class="exec-btn" onclick="runQuery()">Send</button>
             </div>
         </footer>
     </main>
 
     <script>
-        const API_KEY = 'sk-default-U39NQBuInIefuXIEZaSkphO02WFwc3tR';
-        const AGENT_ID = '6a1d12b3a23278ef63b5371c';
-        const USER_ID = 'krishshreesurya@gmail.com';
+        const API = 'sk-default-U39NQBuInIefuXIEZaSkphO02WFwc3tR';
+        const AID = '6a1d12b3a23278ef63b5371c';
+        const UID = 'krishshreesurya@gmail.com';
 
-        // 1. Initialize Persistence
-        let sessionId = localStorage.getItem('pf_session_id');
-        if (!sessionId) {
-            sessionId = 'STD-' + Math.floor(Math.random() * 900 + 100);
-            localStorage.setItem('pf_session_id', sessionId);
-        }
-        document.getElementById('session-tag').innerText = `SESSION: ${sessionId}`;
+        let sid = localStorage.getItem('pf_sid') || 'SID-' + Math.floor(Math.random()*999);
+        localStorage.setItem('pf_sid', sid);
 
-        // Load History
         window.onload = () => {
-            const history = localStorage.getItem('pf_history_log');
-            if (history) {
-                document.getElementById('chat-window').innerHTML = history;
-                scrollBottom();
+            const hist = localStorage.getItem('pf_hist');
+            if(hist) { 
+                document.getElementById('chat-window').innerHTML = hist; 
+                scroll(); 
             } else {
-                renderResponse("System initialized. Welcome to Pathfinder AI. I am ready to assist you with your career roadmap, resume optimization, and interview preparation. How can I help you today?", 'bot');
+                render("Hello! I am Pathfinder AI. How can I help with your career today?", 'bot');
             }
         };
 
-        // 2. Query System
-        async function runSystemQuery() {
-            const input = document.getElementById('cmd-input');
-            const query = input.value.trim();
-            if (!query) return;
+        async function runQuery() {
+            const el = document.getElementById('user-in');
+            const val = el.value.trim();
+            if(!val) return;
 
-            // Log user message
-            renderResponse(query, 'user');
-            input.value = '';
-
-            // Show Loader
-            document.getElementById('status-msg').style.display = 'block';
-            scrollBottom();
+            render(val, 'user');
+            el.value = '';
+            document.getElementById('load').style.display = 'block';
 
             try {
-                const response = await fetch('https://agent-prod.studio.lyzr.ai/v3/inference/chat/', {
+                const res = await fetch('https://agent-prod.studio.lyzr.ai/v3/inference/chat/', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
-                    body: JSON.stringify({
-                        "user_id": USER_ID,
-                        "agent_id": AGENT_ID,
-                        "session_id": sessionId,
-                        "message": query
-                    })
+                    headers: { 'Content-Type': 'application/json', 'x-api-key': API },
+                    body: JSON.stringify({ "user_id": UID, "agent_id": AID, "session_id": sid, "message": val })
                 });
-
-                const data = await response.json();
-                let rawOutput = data.response || data.message || "Query executed successfully.";
-
-                // 3. Clean the output (Remove # and *)
-                let cleanOutput = rawOutput.replace(/[#*]/g, '');
-
-                document.getElementById('status-msg').style.display = 'none';
-                renderResponse(cleanOutput, 'bot');
-
-            } catch (err) {
-                document.getElementById('status-msg').style.display = 'none';
-                renderResponse("System Error: Communication with the intelligence cluster was interrupted.", 'bot');
+                const data = await res.json();
+                let output = (data.response || data.message || "Done.").replace(/[#*]/g, '');
+                document.getElementById('load').style.display = 'none';
+                render(output, 'bot');
+            } catch(e) {
+                document.getElementById('load').style.display = 'none';
+                render("Connection error.", 'bot');
             }
         }
 
-        // 4. UI Rendering
-        function renderResponse(text, type) {
-            const window = document.getElementById('chat-window');
-            const entry = document.createElement('div');
-            entry.className = 'log-entry';
-
-            if (type === 'user') {
-                entry.innerHTML = `<span class="user-prompt">pathfinder ></span> ${text}`;
-            } else {
-                entry.innerHTML = `
-                    <div class="sys-info">[RESPONSE_LOG]</div>
-                    <div class="ai-response-box">${text}</div>
-                `;
-            }
-
-            window.appendChild(entry);
-            
-            // Save to database (localStorage)
-            localStorage.setItem('pf_history_log', window.innerHTML);
-            scrollBottom();
-        }
-
-        function scrollBottom() {
+        function render(txt, type) {
             const win = document.getElementById('chat-window');
-            win.scrollTop = win.scrollHeight;
+            const div = document.createElement('div');
+            div.className = 'log-entry';
+            div.innerHTML = type === 'user' ? `<span class="user-prompt">pathfinder ></span> ${txt}` : `<div class="ai-response-box">${txt}</div>`;
+            win.appendChild(div);
+            localStorage.setItem('pf_hist', win.innerHTML);
+            scroll();
         }
 
-        function clearAllData() {
-            if (confirm("Wipe all local session data and history?")) {
-                localStorage.clear();
-                location.reload();
-            }
-        }
+        function scroll() { const w = document.getElementById('chat-window'); w.scrollTop = w.scrollHeight; }
+        function clearData() { if(confirm("Wipe history?")) { localStorage.clear(); location.reload(); } }
     </script>
 </body>
 </html>
